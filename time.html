@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 id="time"> 00:00 </h1>
+    <script src="js/jquery.js"></script>
+    <script>
+        var totalmins=0;
+        var convertedtosecs=0;
+        var remainingmins=0;
+        var remainingsecs=0;
+        var quiztime="";
+
+        function starttime(){
+            totalmins=2;
+            convertedtosecs=60*totalmins;
+            
+            
+            function timer(){
+                convertedtosecs--;
+
+                remainingmins=Math.floor(convertedtosecs/60);
+                remainingsecs=convertedtosecs%60;
+                
+              
+                if(remainingmins<=9 && remainingmins>=0){
+                    remainingmins="0" + remainingmins;
+                }
+
+                if(remainingsecs<=9 && remainingsecs>=0){
+                    remainingsecs="0" + remainingsecs;
+                }
+
+                $("#time").text(`${remainingmins}:${remainingsecs}`); 
+                if(convertedtosecs==0){
+                    clearInterval(quiztime);
+                }
+            }
+            quiztime=setInterval(timer,100);
+        }
+            starttime();
+        
+    </script>
+</body>
+</html>
